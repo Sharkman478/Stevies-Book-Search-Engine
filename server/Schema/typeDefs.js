@@ -4,10 +4,10 @@ const typeDefs = `
         username: String!
         email: String!
         bookCount: Int!
-        savedBooks [String]!
+        savedBooks: [Book]
     }
 
-    type Book = {
+    type Book {
         bookId: String!
         authors: [String]!
         description: String!
@@ -16,21 +16,19 @@ const typeDefs = `
         link: String!
     }
 
-    type Auth = {
+    type Auth {
         token: ID!
         user: User
     }
 
-    tyoe Query = {
-        user(userId: ID!): User
+    type Query {
         me: User
     }
 
     type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth
         loginUser(email: String!, password: String!): Auth
-    
-        saveBook(input: SaveBookInput!): User
+        savedBook(bookId: String!, authors: String!, description: String!, title: String!, image: String!, link: String!): User
         removeBook(bookId: String!): User
     }
 `;
